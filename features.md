@@ -1,13 +1,13 @@
 ### Features
 
 1. A list of possible class activities should be displayed:
-* Hyung
-* Line drill (hands, feet, combos)
-* One Steps (hands, feet, ho-sin-sul)
-* Hyung applications
-* Weapons
-* Sparring
-* Other
+ Hyung,
+ Line drill (hands, feet, combos),
+ One Steps (hands, feet, ho-sin-sul),
+ Hyung applications,
+ Weapons,
+ Sparring,
+ Other
 
 2. A list of all students should appear so that the user can select who was present in class.
 3. A particular class activity can be selected in 15 minute increments.
