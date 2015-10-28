@@ -39,5 +39,9 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getClassActivities()).toContain('Hand One Steps');
     });
 
+    it('should contain kick one steps in the list of class activities', function() {
+      expect(journalController.getClassActivities()).toContain('Kick One Steps');
+    });
+
   });
 });
