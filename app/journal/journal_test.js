@@ -43,5 +43,9 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getClassActivities()).toContain('Kick One Steps');
     });
 
+    it('should contain ho sin sul in the list of class activities', function() {
+      expect(journalController.getClassActivities()).toContain('Ho Sin Sul');
+    });
+
   });
 });
