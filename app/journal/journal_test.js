@@ -15,5 +15,11 @@ describe('tangSooDoJournal.journal module', function() {
       expect(homeController.getCurrentDate()).toBe(expectedDateString);
     }));
 
+    it('should contain hyung in the list of class activities', inject(function($controller) {
+      var homeController = $controller('JournalController');
+
+      expect(homeController.getClassActivities()).toContain('Hyung');
+    }));
+
   });
 });

@@ -16,4 +16,8 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
     return new Date().toLocaleDateString('en-US', options);
   }
 
+  this.getClassActivities = function() {
+    return ['Hyung'];
+  }
+
 }]);
