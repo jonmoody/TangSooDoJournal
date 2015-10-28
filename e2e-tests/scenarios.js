@@ -14,8 +14,8 @@ describe('Tang Soo Do Journal', function() {
     });
 
     it('should render homepage when user navigates to /home', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial view for the homepage/);
+      expect(element.all(by.css('[ng-view] h1')).first().getText()).
+        toMatch(/Tang Soo Do Journal/);
     });
 
   });

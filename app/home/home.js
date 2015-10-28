@@ -11,4 +11,9 @@ angular.module('tangSooDoJournal.home', ['ngRoute'])
 
 .controller('HomeController', [function() {
 
+  this.getCurrentDate = function() {
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date().toLocaleDateString('en-US', options);
+  }
+
 }]);

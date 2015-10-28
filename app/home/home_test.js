@@ -6,10 +6,13 @@ describe('tangSooDoJournal.home module', function() {
 
   describe('home controller', function(){
 
-    it('should ....', inject(function($controller) {
-      //spec body
+    it('should get the current date', inject(function($controller) {
       var homeController = $controller('HomeController');
-      expect(homeController).toBeDefined();
+      var expectedDateString = 'November 27, 2015';
+
+      jasmine.clock().mockDate(new Date(expectedDateString));
+
+      expect(homeController.getCurrentDate()).toBe(expectedDateString);
     }));
 
   });
