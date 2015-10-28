@@ -19,40 +19,44 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getCurrentDate()).toBe(expectedDateString);
     });
 
-    it('should contain hyung in the list of class activities', function() {
-      expect(journalController.getClassActivities()).toContain('Hyung');
-    });
+    describe('class activities', function() {
 
-    it('should contain line drill in the list of class activities', function() {
-      expect(journalController.getClassActivities()).toContain('Line Drill');
-    });
+      it('should contain hyung', function() {
+        expect(journalController.getClassActivities()).toContain('Hyung');
+      });
 
-    it('should contain sparring in the list of class activities', function() {
-      expect(journalController.getClassActivities()).toContain('Sparring');
-    });
+      it('should contain line drill', function() {
+        expect(journalController.getClassActivities()).toContain('Line Drill');
+      });
 
-    it('should contain targeting in the list of class activities', function() {
-      expect(journalController.getClassActivities()).toContain('Targeting');
-    });
+      it('should contain sparring', function() {
+        expect(journalController.getClassActivities()).toContain('Sparring');
+      });
 
-    it('should contain hand one steps in the list of class activities', function() {
-      expect(journalController.getClassActivities()).toContain('Hand One Steps');
-    });
+      it('should contain targeting', function() {
+        expect(journalController.getClassActivities()).toContain('Targeting');
+      });
 
-    it('should contain kick one steps in the list of class activities', function() {
-      expect(journalController.getClassActivities()).toContain('Kick One Steps');
-    });
+      it('should contain hand one steps', function() {
+        expect(journalController.getClassActivities()).toContain('Hand One Steps');
+      });
 
-    it('should contain ho sin sul in the list of class activities', function() {
-      expect(journalController.getClassActivities()).toContain('Ho Sin Sul');
-    });
+      it('should contain kick one steps', function() {
+        expect(journalController.getClassActivities()).toContain('Kick One Steps');
+      });
 
-    it('should contain hyung applications in the list of class activities', function() {
-      expect(journalController.getClassActivities()).toContain('Hyung Applications');
-    });
+      it('should contain ho sin sul', function() {
+        expect(journalController.getClassActivities()).toContain('Ho Sin Sul');
+      });
 
-    it('should contain weapons in the list of class activities', function() {
-      expect(journalController.getClassActivities()).toContain('Weapons');
+      it('should contain hyung applications', function() {
+        expect(journalController.getClassActivities()).toContain('Hyung Applications');
+      });
+
+      it('should contain weapons', function() {
+        expect(journalController.getClassActivities()).toContain('Weapons');
+      });
+
     });
 
   });
