@@ -51,5 +51,9 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getClassActivities()).toContain('Hyung Applications');
     });
 
+    it('should contain weapons in the list of class activities', function() {
+      expect(journalController.getClassActivities()).toContain('Weapons');
+    });
+
   });
 });
