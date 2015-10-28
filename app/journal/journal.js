@@ -18,7 +18,7 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
 
   this.getClassActivities = function() {
     return ['Hyung', 'Line Drill', 'Sparring', 'Targeting', 'Hand One Steps',
-            'Kick One Steps', 'Ho Sin Sul'];
+            'Kick One Steps', 'Ho Sin Sul', 'Hyung Applications'];
   }
 
 }]);

@@ -47,5 +47,9 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getClassActivities()).toContain('Ho Sin Sul');
     });
 
+    it('should contain hyung applications in the list of class activities', function() {
+      expect(journalController.getClassActivities()).toContain('Hyung Applications');
+    });
+
   });
 });
