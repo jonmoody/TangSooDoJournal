@@ -1,13 +1,13 @@
 'use strict';
 
-describe('tangSooDoJournal.home module', function() {
+describe('tangSooDoJournal.journal module', function() {
 
-  beforeEach(module('tangSooDoJournal.home'));
+  beforeEach(module('tangSooDoJournal.journal'));
 
-  describe('home controller', function(){
+  describe('journal controller', function(){
 
     it('should get the current date', inject(function($controller) {
-      var homeController = $controller('HomeController');
+      var homeController = $controller('JournalController');
       var expectedDateString = 'November 27, 2015';
 
       jasmine.clock().mockDate(new Date(expectedDateString));

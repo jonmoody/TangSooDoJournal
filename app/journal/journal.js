@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('tangSooDoJournal.home', ['ngRoute'])
+angular.module('tangSooDoJournal.journal', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/home', {
-    templateUrl: 'home/home.html',
-    controller: 'HomeController'
+  $routeProvider.when('/journal', {
+    templateUrl: 'journal/journal.html',
+    controller: 'JournalController'
   });
 }])
 
-.controller('HomeController', [function() {
+.controller('JournalController', [function() {
 
   this.getCurrentDate = function() {
     var options = { year: 'numeric', month: 'long', day: 'numeric' };

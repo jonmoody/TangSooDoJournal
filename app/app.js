@@ -2,15 +2,15 @@
 
 angular.module('tangSooDoJournal', [
   'ngRoute',
-  'tangSooDoJournal.home'
+  'tangSooDoJournal.journal'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'home/home.html',
-      controller: 'HomeController'
+      templateUrl: 'journal/journal.html',
+      controller: 'JournalController'
     })
     .otherwise({
-      redirectTo: '/home'
+      redirectTo: '/journal'
     });
 }]);
