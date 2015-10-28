@@ -31,5 +31,9 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getClassActivities()).toContain('Sparring');
     });
 
+    it('should contain targeting in the list of class activities', function() {
+      expect(journalController.getClassActivities()).toContain('Targeting');
+    });
+
   });
 });
