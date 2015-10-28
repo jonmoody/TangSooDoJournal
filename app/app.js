@@ -2,8 +2,7 @@
 
 angular.module('tangSooDoJournal', [
   'ngRoute',
-  'tangSooDoJournal.home',
-  'tangSooDoJournal.version'
+  'tangSooDoJournal.home'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider
