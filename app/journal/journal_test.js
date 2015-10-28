@@ -23,5 +23,9 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getClassActivities()).toContain('Hyung');
     });
 
+    it('should contain line drill in the list of class activities', function() {
+      expect(journalController.getClassActivities()).toContain('Line Drill');
+    });
+
   });
 });
