@@ -27,5 +27,9 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getClassActivities()).toContain('Line Drill');
     });
 
+    it('should contain sparring in the list of class activities', function() {
+      expect(journalController.getClassActivities()).toContain('Sparring');
+    });
+
   });
 });

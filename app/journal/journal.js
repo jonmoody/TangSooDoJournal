@@ -17,7 +17,7 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
   }
 
   this.getClassActivities = function() {
-    return ['Hyung', 'Line Drill'];
+    return ['Hyung', 'Line Drill', 'Sparring'];
   }
 
 }]);
