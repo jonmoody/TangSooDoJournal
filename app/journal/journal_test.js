@@ -35,5 +35,9 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getClassActivities()).toContain('Targeting');
     });
 
+    it('should contain hand one steps in the list of class activities', function() {
+      expect(journalController.getClassActivities()).toContain('Hand One Steps');
+    });
+
   });
 });
