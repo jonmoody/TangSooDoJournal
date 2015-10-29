@@ -21,4 +21,12 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
             'Kick One Steps', 'Ho Sin Sul', 'Hyung Applications', 'Weapons'];
   }
 
+}])
+
+.directive('classActivities', [function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    templateUrl: 'journal/directives/class-activities.html'
+  }
 }]);
