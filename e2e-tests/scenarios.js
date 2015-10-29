@@ -22,6 +22,7 @@ describe('Tang Soo Do Journal', function() {
       expect(element.all(by.css('.class-activities-input')).count()).toEqual(9);
 
       var elements = element.all(by.css('.class-activities-label'));
+      expect(elements.count()).toEqual(9);
       expect(elements.get(0).getText()).toEqual('Hyung');
       expect(elements.get(1).getText()).toEqual('Line Drill');
       expect(elements.get(2).getText()).toEqual('Sparring');
