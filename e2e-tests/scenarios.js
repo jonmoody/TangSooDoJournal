@@ -19,9 +19,9 @@ describe('Tang Soo Do Journal', function() {
     });
 
     it('should display the list of class activities', function() {
-      expect(element.all(by.repeater('activity in journal.getClassActivities()')).count()).toEqual(9);
+      expect(element.all(by.css('.class-activities-input')).count()).toEqual(9);
 
-      var elements = element.all(by.css('.class-activities div label'));
+      var elements = element.all(by.css('.class-activities-label'));
       expect(elements.get(0).getText()).toEqual('Hyung');
       expect(elements.get(1).getText()).toEqual('Line Drill');
       expect(elements.get(2).getText()).toEqual('Sparring');

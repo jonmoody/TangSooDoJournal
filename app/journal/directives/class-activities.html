@@ -1,6 +1,6 @@
 <div class="class-activities">
   <div ng-repeat="activity in journal.getClassActivities() track by $index">
-    <input type="checkbox" value="{{activity}}" />
-    <label>{{activity}}</label><br />
+    <input class="class-activities-input" type="checkbox" value="{{activity}}" />
+    <label class="class-activities-label">{{activity}}</label><br />
   </div>
 </div>
