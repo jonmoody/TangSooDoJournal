@@ -15,7 +15,7 @@ describe('Tang Soo Do Journal', function() {
 
     it('should render the journal page when user navigates to /journal', function() {
       expect(element.all(by.css('[ng-view] h1')).first().getText()).
-        toMatch(/Tang Soo Do Journal/);
+        toMatch(/Buckeye Tang Soo Do Journal/);
     });
 
   });
