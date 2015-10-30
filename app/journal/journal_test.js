@@ -19,6 +19,18 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getCurrentDate()).toBe(expectedDateString);
     });
 
+    it('should default the class activities to 0 minutes', function() {
+      expect(journalController.getTimeForActivity('Hyung')).toEqual(0);
+      expect(journalController.getTimeForActivity('Line Drill')).toEqual(0);
+      expect(journalController.getTimeForActivity('Sparring')).toEqual(0);
+      expect(journalController.getTimeForActivity('Targeting')).toEqual(0);
+      expect(journalController.getTimeForActivity('Hand One Steps')).toEqual(0);
+      expect(journalController.getTimeForActivity('Kick One Steps')).toEqual(0);
+      expect(journalController.getTimeForActivity('Ho Sin Sul')).toEqual(0);
+      expect(journalController.getTimeForActivity('Hyung Applications')).toEqual(0);
+      expect(journalController.getTimeForActivity('Weapons')).toEqual(0);
+    });
+
     describe('class activities', function() {
 
       it('should contain hyung', function() {

@@ -11,6 +11,9 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
 
 .controller('JournalController', [function() {
 
+  var controller = this;
+  var activities = [];
+
   this.getCurrentDate = function() {
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date().toLocaleDateString('en-US', options);
@@ -19,6 +22,17 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
   this.getClassActivities = function() {
     return ['Hyung', 'Line Drill', 'Sparring', 'Targeting', 'Hand One Steps',
             'Kick One Steps', 'Ho Sin Sul', 'Hyung Applications', 'Weapons'];
+  }
+
+  this.getTimeForActivity = function(activityName) {
+    return activities[controller.getClassActivities().indexOf(activityName)].time;
+  }
+
+  for (var index = 0; index < controller.getClassActivities().length; index++) {
+    activities.push({
+      name: controller.getClassActivities()[index],
+      time: 0
+    });
   }
 
 }])
