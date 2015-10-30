@@ -33,7 +33,11 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
   }
 
   this.decreaseTimeForActivity = function(activityName) {
-    controller.activities[controller.getClassActivities().indexOf(activityName)].time -= 15;
+    var index = controller.getClassActivities().indexOf(activityName);
+
+    if (controller.activities[index].time > 0) {
+      controller.activities[index].time -= 15;
+    }
   }
 
   for (var index = 0; index < controller.getClassActivities().length; index++) {

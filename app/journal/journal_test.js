@@ -50,6 +50,13 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getTimeForActivity(activityName)).toEqual(0);
     });
 
+    it('should not be able to decrease the time of an activity below 0 minutes', function() {
+      var activityName = 'Hyung';
+      journalController.decreaseTimeForActivity(activityName);
+
+      expect(journalController.getTimeForActivity(activityName)).toEqual(0);
+    });
+
     describe('class activities', function() {
 
       it('should contain hyung', function() {
