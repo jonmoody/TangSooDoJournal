@@ -57,6 +57,18 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getTimeForActivity(activityName)).toEqual(0);
     });
 
+    it('should not be able to increase the time of an activity above 120 minutes', function() {
+      var activityName = journalController.getClassActivities()[0];
+      journalController.activities[0] = {
+        name: activityName,
+        time: 120
+      };
+
+      journalController.increaseTimeForActivity(activityName);
+
+      expect(journalController.getTimeForActivity(activityName)).toEqual(120);
+    });
+
     describe('class activities', function() {
 
       it('should contain hyung', function() {
