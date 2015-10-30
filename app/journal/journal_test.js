@@ -31,6 +31,13 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getTimeForActivity('Weapons')).toEqual(0);
     });
 
+    it('should increase the time of an activity by 15 minutes', function() {
+      var activityName = 'Hyung';
+      journalController.increaseTimeForActivity(activityName);
+
+      expect(journalController.getTimeForActivity(activityName)).toEqual(15);
+    });
+
     describe('class activities', function() {
 
       it('should contain hyung', function() {
