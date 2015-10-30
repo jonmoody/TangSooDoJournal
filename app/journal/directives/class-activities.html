@@ -1,6 +1,7 @@
 <div class="class-activities">
-  <div ng-repeat="activity in journal.getClassActivities() track by $index">
-    <input class="class-activities-input" type="checkbox" value="{{activity}}" />
-    <label class="class-activities-label">{{activity}}</label><br />
+  <div ng-repeat="activity in journal.activities track by $index">
+    <label class="class-activities-label">{{activity.name}}</label><br />
+    <span class="time-text">{{activity.time}}</span>
+    <button class="increase-time-button" ng-click="journal.increaseTimeForActivity(activity.name)">+</button><br /><br />
   </div>
 </div>

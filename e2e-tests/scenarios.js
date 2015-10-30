@@ -19,9 +19,8 @@ describe('Tang Soo Do Journal', function() {
     });
 
     it('should display the list of class activities', function() {
-      expect(element.all(by.css('.class-activities-input')).count()).toEqual(9);
-
       var elements = element.all(by.css('.class-activities-label'));
+
       expect(elements.count()).toEqual(9);
       expect(elements.get(0).getText()).toEqual('Hyung');
       expect(elements.get(1).getText()).toEqual('Line Drill');
@@ -32,6 +31,16 @@ describe('Tang Soo Do Journal', function() {
       expect(elements.get(6).getText()).toEqual('Ho Sin Sul');
       expect(elements.get(7).getText()).toEqual('Hyung Applications');
       expect(elements.get(8).getText()).toEqual('Weapons');
+    });
+
+    it('should increase the time of the class activity when the increase time button is clicked', function() {
+      var increaseTimeButton = element.all(by.css('.increase-time-button')).get(0);
+      var timeText = element.all(by.css('.time-text')).get(0);
+
+      expect(timeText.getText()).toEqual('0');
+      increaseTimeButton.click();
+
+      expect(timeText.getText()).toEqual('15');
     });
 
   });
