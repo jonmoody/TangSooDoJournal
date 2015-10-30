@@ -12,7 +12,7 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
 .controller('JournalController', [function() {
 
   var controller = this;
-  var activities = [];
+  this.activities = [];
 
   this.getCurrentDate = function() {
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -25,15 +25,19 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
   }
 
   this.getTimeForActivity = function(activityName) {
-    return activities[controller.getClassActivities().indexOf(activityName)].time;
+    return controller.activities[controller.getClassActivities().indexOf(activityName)].time;
   }
 
   this.increaseTimeForActivity = function(activityName) {
-    activities[controller.getClassActivities().indexOf(activityName)].time += 15;
+    controller.activities[controller.getClassActivities().indexOf(activityName)].time += 15;
+  }
+
+  this.decreaseTimeForActivity = function(activityName) {
+    controller.activities[controller.getClassActivities().indexOf(activityName)].time -= 15;
   }
 
   for (var index = 0; index < controller.getClassActivities().length; index++) {
-    activities.push({
+    controller.activities.push({
       name: controller.getClassActivities()[index],
       time: 0
     });

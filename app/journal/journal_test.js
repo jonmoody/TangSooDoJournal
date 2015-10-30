@@ -38,6 +38,18 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.getTimeForActivity(activityName)).toEqual(15);
     });
 
+    it('should decrease the time of an activity by 15 minutes', function() {
+      var activityName = journalController.getClassActivities()[0];
+      journalController.activities[0] = {
+        name: activityName,
+        time: 15
+      };
+
+      journalController.decreaseTimeForActivity(activityName);
+
+      expect(journalController.getTimeForActivity(activityName)).toEqual(0);
+    });
+
     describe('class activities', function() {
 
       it('should contain hyung', function() {
