@@ -1,6 +1,7 @@
 <div class="class-activities">
   <div ng-repeat="activity in journal.activities track by $index">
     <label class="class-activities-label">{{activity.name}}</label><br />
+    <button class="decrease-time-button" ng-click="journal.decreaseTimeForActivity(activity.name)">-</button>
     <span class="time-text">{{activity.time}}</span>
     <button class="increase-time-button" ng-click="journal.increaseTimeForActivity(activity.name)">+</button><br /><br />
   </div>

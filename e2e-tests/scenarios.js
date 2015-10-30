@@ -43,6 +43,20 @@ describe('Tang Soo Do Journal', function() {
       expect(timeText.getText()).toEqual('15');
     });
 
+    it('should decrease the time of the class activity when the decrease time button is clicked', function() {
+      var decreaseTimeButton = element.all(by.css('.decrease-time-button')).get(0);
+      var increaseTimeButton = element.all(by.css('.increase-time-button')).get(0);
+      var timeText = element.all(by.css('.time-text')).get(0);
+
+      increaseTimeButton.click();
+      increaseTimeButton.click();
+      expect(timeText.getText()).toEqual('30');
+
+      decreaseTimeButton.click();
+
+      expect(timeText.getText()).toEqual('15');
+    });
+
   });
 
 });
