@@ -2,6 +2,10 @@
 
 angular.module('tangSooDoJournal.journal', ['ngRoute'])
 
+.constant('TIME_INTERVAL', 15)
+.constant('MAX_TIME', 120)
+.constant('MIN_TIME', 0)
+
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/journal', {
     templateUrl: 'journal/journal.html',
@@ -9,7 +13,7 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
   });
 }])
 
-.controller('JournalController', [function() {
+.controller('JournalController', function(TIME_INTERVAL, MAX_TIME, MIN_TIME) {
 
   var controller = this;
   this.activities = [];
@@ -31,32 +35,32 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
   this.increaseTimeForActivity = function(activityName) {
     var index = controller.getClassActivities().indexOf(activityName);
 
-    if (controller.activities[index].time < 120) {
-      controller.activities[index].time += 15;
+    if (controller.activities[index].time < MAX_TIME) {
+      controller.activities[index].time += TIME_INTERVAL;
     }
   }
 
   this.decreaseTimeForActivity = function(activityName) {
     var index = controller.getClassActivities().indexOf(activityName);
 
-    if (controller.activities[index].time > 0) {
-      controller.activities[index].time -= 15;
+    if (controller.activities[index].time > MIN_TIME) {
+      controller.activities[index].time -= TIME_INTERVAL;
     }
   }
 
   for (var index = 0; index < controller.getClassActivities().length; index++) {
     controller.activities.push({
       name: controller.getClassActivities()[index],
-      time: 0
+      time: MIN_TIME
     });
   }
 
-}])
+})
 
-.directive('classActivities', [function() {
+.directive('classActivities', function() {
   return {
     restrict: 'E',
     replace: true,
     templateUrl: 'journal/directives/class-activities.html'
   }
-}]);
+});
