@@ -22,7 +22,7 @@ var Activities = require('./models/activities');
         // frontend routes =========================================================
         // route to handle all angular requests
         app.get('*', function(req, res) {
-            res.sendFile('./app/index.html');
+            res.sendFile(__dirname + '/app/index.html');
         });
 
     };
