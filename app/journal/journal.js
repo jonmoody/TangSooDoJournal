@@ -5,6 +5,9 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
 .constant('TIME_INTERVAL', 15)
 .constant('MAX_TIME', 120)
 .constant('MIN_TIME', 0)
+.constant('ACTIVITY_NAMES', ['Hyung', 'Line Drill', 'Sparring', 'Targeting',
+                            'Hand One Steps', 'Kick One Steps', 'Ho Sin Sul',
+                            'Hyung Applications', 'Weapons'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/journal', {
@@ -13,7 +16,7 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
   });
 }])
 
-.controller('JournalController', function(TIME_INTERVAL, MAX_TIME, MIN_TIME) {
+.controller('JournalController', function(TIME_INTERVAL, MAX_TIME, MIN_TIME, ACTIVITY_NAMES) {
 
   var controller = this;
   this.activities = [];
@@ -23,17 +26,12 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
     return new Date().toLocaleDateString('en-US', options);
   }
 
-  this.getClassActivities = function() {
-    return ['Hyung', 'Line Drill', 'Sparring', 'Targeting', 'Hand One Steps',
-            'Kick One Steps', 'Ho Sin Sul', 'Hyung Applications', 'Weapons'];
-  }
-
   this.getTimeForActivity = function(activityName) {
-    return controller.activities[controller.getClassActivities().indexOf(activityName)].time;
+    return controller.activities[ACTIVITY_NAMES.indexOf(activityName)].time;
   }
 
   this.increaseTimeForActivity = function(activityName) {
-    var index = controller.getClassActivities().indexOf(activityName);
+    var index = ACTIVITY_NAMES.indexOf(activityName);
 
     if (controller.activities[index].time < MAX_TIME) {
       controller.activities[index].time += TIME_INTERVAL;
@@ -41,16 +39,16 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
   }
 
   this.decreaseTimeForActivity = function(activityName) {
-    var index = controller.getClassActivities().indexOf(activityName);
+    var index = ACTIVITY_NAMES.indexOf(activityName);
 
     if (controller.activities[index].time > MIN_TIME) {
       controller.activities[index].time -= TIME_INTERVAL;
     }
   }
 
-  for (var index = 0; index < controller.getClassActivities().length; index++) {
+  for (var index = 0; index < ACTIVITY_NAMES.length; index++) {
     controller.activities.push({
-      name: controller.getClassActivities()[index],
+      name: ACTIVITY_NAMES[index],
       time: MIN_TIME
     });
   }

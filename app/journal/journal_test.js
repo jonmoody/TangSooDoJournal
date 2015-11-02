@@ -7,9 +7,11 @@ describe('tangSooDoJournal.journal module', function() {
   describe('journal controller', function(){
 
     var journalController;
+    var ACTIVITY_NAMES;
 
-    beforeEach(inject(function(_$controller_) {
+    beforeEach(inject(function(_$controller_, _ACTIVITY_NAMES_) {
       journalController = _$controller_('JournalController');
+      ACTIVITY_NAMES = _ACTIVITY_NAMES_;
     }));
 
     it('should get the current date', function() {
@@ -39,7 +41,7 @@ describe('tangSooDoJournal.journal module', function() {
     });
 
     it('should decrease the time of an activity by 15 minutes', function() {
-      var activityName = journalController.getClassActivities()[0];
+      var activityName = ACTIVITY_NAMES[0];
       journalController.activities[0] = {
         name: activityName,
         time: 15
@@ -58,7 +60,7 @@ describe('tangSooDoJournal.journal module', function() {
     });
 
     it('should not be able to increase the time of an activity above 120 minutes', function() {
-      var activityName = journalController.getClassActivities()[0];
+      var activityName = ACTIVITY_NAMES[0];
       journalController.activities[0] = {
         name: activityName,
         time: 120
@@ -72,39 +74,39 @@ describe('tangSooDoJournal.journal module', function() {
     describe('class activities', function() {
 
       it('should contain hyung', function() {
-        expect(journalController.getClassActivities()).toContain('Hyung');
+        expect(ACTIVITY_NAMES).toContain('Hyung');
       });
 
       it('should contain line drill', function() {
-        expect(journalController.getClassActivities()).toContain('Line Drill');
+        expect(ACTIVITY_NAMES).toContain('Line Drill');
       });
 
       it('should contain sparring', function() {
-        expect(journalController.getClassActivities()).toContain('Sparring');
+        expect(ACTIVITY_NAMES).toContain('Sparring');
       });
 
       it('should contain targeting', function() {
-        expect(journalController.getClassActivities()).toContain('Targeting');
+        expect(ACTIVITY_NAMES).toContain('Targeting');
       });
 
       it('should contain hand one steps', function() {
-        expect(journalController.getClassActivities()).toContain('Hand One Steps');
+        expect(ACTIVITY_NAMES).toContain('Hand One Steps');
       });
 
       it('should contain kick one steps', function() {
-        expect(journalController.getClassActivities()).toContain('Kick One Steps');
+        expect(ACTIVITY_NAMES).toContain('Kick One Steps');
       });
 
       it('should contain ho sin sul', function() {
-        expect(journalController.getClassActivities()).toContain('Ho Sin Sul');
+        expect(ACTIVITY_NAMES).toContain('Ho Sin Sul');
       });
 
       it('should contain hyung applications', function() {
-        expect(journalController.getClassActivities()).toContain('Hyung Applications');
+        expect(ACTIVITY_NAMES).toContain('Hyung Applications');
       });
 
       it('should contain weapons', function() {
-        expect(journalController.getClassActivities()).toContain('Weapons');
+        expect(ACTIVITY_NAMES).toContain('Weapons');
       });
 
     });
