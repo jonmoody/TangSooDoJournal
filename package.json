@@ -33,6 +33,7 @@
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
+    "frisby": "^0.8.5",
     "method-override": "^2.3.5",
     "mongodb": "^2.0.47"
   }
