@@ -1,28 +1,21 @@
-var Activities = require('./models/activities');
+var mongodb = require('mongodb')
+  , MongoClient = mongodb.MongoClient;
 
-    module.exports = function(app) {
+module.exports = function(app) {
 
-        // server routes ===========================================================
-        // handle things like api calls
-        // authentication routes
+  app.get('/api/load', function(req, res) {
+    res.send('Nothing there');
+  });
 
-        app.get('/api/activities', function(req, res) {
-            Activities.find(function(err, activities) {
+  app.post('/api/save', function(req, res) {
+    MongoClient.connect('mongodb://localhost/journal', function(err, db) {
+      var collection = db.collection('activities');
 
-                if (err)
-                    res.send(err);
+      collection.insert({
+        name: 'TestRecord'
+      });
+    });
+    res.send('Saved successfully');
+  });
 
-                res.json(activities);
-            });
-        });
-
-        // route to handle creating goes here (app.post)
-        // route to handle delete goes here (app.delete)
-
-        // frontend routes =========================================================
-        // route to handle all angular requests
-        app.get('*', function(req, res) {
-            res.sendFile(__dirname + '/app/index.html');
-        });
-
-    };
+};
