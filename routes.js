@@ -4,7 +4,13 @@ var mongodb = require('mongodb')
 module.exports = function(app) {
 
   app.get('/api/load', function(req, res) {
-    res.send('Nothing there');
+    MongoClient.connect('mongodb://localhost/journal', function(err, db) {
+      var collection = db.collection('activities');
+
+      collection.find({}).toArray(function(err, documents) {
+        res.send(documents);
+      });
+    });
   });
 
   app.post('/api/save', function(req, res) {
