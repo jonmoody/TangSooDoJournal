@@ -20,19 +20,23 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "prestart": "npm install",
-    "start": "node server.js",
+    "prestart": "npm install; mongod --dbpath /data/db --fork --logpath /dev/null",
+    "start": "forever start server.js",
+    "stop": "mongo admin --eval 'db.shutdownServer()' > /dev/null; forever stop server.js",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js  --single-run",
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",
-    "protractor": "protractor e2e-tests/protractor.conf.js"
+    "protractor": "protractor e2e-tests/protractor.conf.js --verbose",
+    "rest-tests": "jasmine-node ./rest-tests/ --verbose",
+    "all-tests": "npm start; npm run test-single-run; npm run rest-tests; webdriver-manager update; protractor e2e-tests/protractor.conf.js --verbose; npm stop"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
+    "forever": "^0.15.1",
     "frisby": "^0.8.5",
     "jasmine-node": "^1.14.5",
     "method-override": "^2.3.5",
