@@ -17,11 +17,9 @@ module.exports = function(app) {
     MongoClient.connect('mongodb://localhost/journal', function(err, db) {
       var collection = db.collection('activities');
 
-      collection.insert({
-        name: 'TestRecord'
-      });
+      collection.insert(req.body);
     });
-    res.send('Saved successfully');
+    res.json(req.body);
   });
 
 };
