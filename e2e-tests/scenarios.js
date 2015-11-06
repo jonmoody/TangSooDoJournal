@@ -12,6 +12,13 @@ describe('Tang Soo Do Journal', function() {
     });
   });
 
+  afterAll(function() {
+    MongoClient.connect('mongodb://localhost/journal', function(err, db) {
+      var collection = db.collection('activities');
+      collection.remove({});
+    });
+  });
+
   it('should automatically redirect to /journal when location hash/fragment is empty', function() {
     browser.get('index.html');
     expect(browser.getLocationAbsUrl()).toMatch('/');
