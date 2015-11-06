@@ -100,7 +100,7 @@ describe('tangSooDoJournal.journal module', function() {
       }
 
       $httpBackend.when('GET', '/api/load').respond(expectedData, '');
-      journalController.getActivitiesForToday();
+      journalController.getActivities();
       $httpBackend.flush();
     });
 

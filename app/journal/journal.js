@@ -62,7 +62,7 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
     $http(request);
   }
 
-  this.getActivitiesForToday = function() {
+  this.getActivities = function() {
     $http({
       method: 'GET',
       url: '/api/load',
@@ -86,7 +86,7 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
     });
   }
 
-  this.getActivitiesForToday();
+  this.getActivities();
 
 })
 
