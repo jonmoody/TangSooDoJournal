@@ -87,6 +87,20 @@ describe('tangSooDoJournal.journal module', function() {
       $httpBackend.flush();
     });
 
+    it('should retrieve the saved data for the current date', function() {
+      var expectedDateString = 'December 15, 2015';
+      jasmine.clock().mockDate(new Date(expectedDateString));
+
+      var expectedData = {
+        date: expectedDateString,
+        activities: journalController.activities
+      }
+
+      $httpBackend.when('GET', '/api/load').respond(expectedData, '');
+      journalController.getActivitiesForToday();
+      $httpBackend.flush();
+    });
+
     describe('class activities', function() {
 
       it('should contain hyung', function() {

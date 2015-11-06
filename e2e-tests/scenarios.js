@@ -57,6 +57,20 @@ describe('Tang Soo Do Journal', function() {
       expect(timeText.getText()).toEqual('15');
     });
 
+    xit('should restore the recorded times when the journal is saved and reloaded on the same day', function() {
+      var increaseTimeButton = element.all(by.css('.increase-time-button')).get(0);
+      var timeText = element.all(by.css('.time-text')).get(0);
+      var submitButton = element(by.css('.submit-button'));
+
+      increaseTimeButton.click();
+      expect(timeText.getText()).toEqual('15');
+
+      submitButton.click();
+      browser.get('index.html');
+
+      expect(timeText.getText()).toEqual('15');
+    });
+
   });
 
 });

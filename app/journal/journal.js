@@ -62,6 +62,18 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
     $http(request);
   }
 
+  this.getActivitiesForToday = function() {
+    $http({
+      method: 'GET',
+      url: '/api/load',
+      data: {
+        date: controller.getCurrentDate()
+      }
+    }).then(function successCallback(response) {
+      controller.activities = response.activities;
+    }, undefined);
+  }
+
   for (var index = 0; index < ACTIVITY_NAMES.length; index++) {
     controller.activities.push({
       name: ACTIVITY_NAMES[index],
