@@ -2,9 +2,5 @@
   <h1>Buckeye Tang Soo Do Journal</h1>
   <p>Current date: {{journal.getCurrentDate()}}</p>
   <class-activities></class-activities>
-
-  <form action="/api/save" method="POST" enctype='application/json'>
-    <input type="submit" value="Submit" class="submit-button">
-  </form>
-
+  <button ng-click="journal.saveActivities()" class="submit-button">Submit</button>
 </div>

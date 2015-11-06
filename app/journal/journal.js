@@ -66,11 +66,16 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
     $http({
       method: 'GET',
       url: '/api/load',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       data: {
         date: controller.getCurrentDate()
       }
     }).then(function successCallback(response) {
-      controller.activities = response.activities;
+      if (response.data.length > 0) {
+        controller.activities = response.data[response.data.length - 1].activities;
+      }
     }, undefined);
   }
 
@@ -80,6 +85,8 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
       time: MIN_TIME
     });
   }
+
+  this.getActivitiesForToday();
 
 })
 

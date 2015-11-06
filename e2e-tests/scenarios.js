@@ -1,10 +1,20 @@
+var mongodb = require('mongodb')
+  , MongoClient = mongodb.MongoClient;
+
 'use strict';
 
 describe('Tang Soo Do Journal', function() {
 
+  beforeEach(function() {
+    MongoClient.connect('mongodb://localhost/journal', function(err, db) {
+      var collection = db.collection('activities');
+      collection.remove({});
+    });
+  });
+
   it('should automatically redirect to /journal when location hash/fragment is empty', function() {
     browser.get('index.html');
-    expect(browser.getLocationAbsUrl()).toMatch("/");
+    expect(browser.getLocationAbsUrl()).toMatch('/');
   });
 
   describe('journal page', function() {
@@ -57,7 +67,7 @@ describe('Tang Soo Do Journal', function() {
       expect(timeText.getText()).toEqual('15');
     });
 
-    xit('should restore the recorded times when the journal is saved and reloaded on the same day', function() {
+    it('should restore the recorded times when the journal is saved and reloaded on the same day', function() {
       var increaseTimeButton = element.all(by.css('.increase-time-button')).get(0);
       var timeText = element.all(by.css('.time-text')).get(0);
       var submitButton = element(by.css('.submit-button'));

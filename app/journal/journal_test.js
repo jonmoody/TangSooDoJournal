@@ -11,9 +11,12 @@ describe('tangSooDoJournal.journal module', function() {
     var $httpBackend;
 
     beforeEach(inject(function(_$controller_, _ACTIVITY_NAMES_, _$httpBackend_) {
-      journalController = _$controller_('JournalController');
-      ACTIVITY_NAMES = _ACTIVITY_NAMES_;
       $httpBackend = _$httpBackend_;
+      ACTIVITY_NAMES = _ACTIVITY_NAMES_;
+
+      $httpBackend.when('GET', '/api/load').respond('', '');
+      journalController = _$controller_('JournalController');
+      $httpBackend.flush();
     }));
 
     it('should get the current date', function() {
