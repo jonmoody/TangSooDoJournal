@@ -16,7 +16,7 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
   });
 }])
 
-.controller('JournalController', function(TIME_INTERVAL, MAX_TIME, MIN_TIME, ACTIVITY_NAMES) {
+.controller('JournalController', function($http, TIME_INTERVAL, MAX_TIME, MIN_TIME, ACTIVITY_NAMES) {
 
   var controller = this;
   this.activities = [];
@@ -44,6 +44,22 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
     if (controller.activities[index].time > MIN_TIME) {
       controller.activities[index].time -= TIME_INTERVAL;
     }
+  }
+
+  this.saveActivities = function() {
+    var request = {
+      method: 'POST',
+      url: '/api/save',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: {
+        date: controller.getCurrentDate(),
+        activities: controller.activities
+      }
+    }
+
+    $http(request);
   }
 
   for (var index = 0; index < ACTIVITY_NAMES.length; index++) {

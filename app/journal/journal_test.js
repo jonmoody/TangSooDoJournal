@@ -8,10 +8,12 @@ describe('tangSooDoJournal.journal module', function() {
 
     var journalController;
     var ACTIVITY_NAMES;
+    var $httpBackend;
 
-    beforeEach(inject(function(_$controller_, _ACTIVITY_NAMES_) {
+    beforeEach(inject(function(_$controller_, _ACTIVITY_NAMES_, _$httpBackend_) {
       journalController = _$controller_('JournalController');
       ACTIVITY_NAMES = _ACTIVITY_NAMES_;
+      $httpBackend = _$httpBackend_;
     }));
 
     it('should get the current date', function() {
@@ -69,6 +71,20 @@ describe('tangSooDoJournal.journal module', function() {
       journalController.increaseTimeForActivity(activityName);
 
       expect(journalController.getTimeForActivity(activityName)).toEqual(120);
+    });
+
+    it('should post the list of activities with the current date when the journal is saved', function() {
+      var expectedDateString = 'December 10, 2015';
+      jasmine.clock().mockDate(new Date(expectedDateString));
+
+      var expectedData = {
+        date: expectedDateString,
+        activities: journalController.activities
+      }
+
+      $httpBackend.expectPOST('/api/save', expectedData).respond(200, '');
+      journalController.saveActivities();
+      $httpBackend.flush();
     });
 
     describe('class activities', function() {
