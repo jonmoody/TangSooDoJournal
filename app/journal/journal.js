@@ -22,7 +22,7 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
   this.activities = [];
 
   function setActivitiesForCurrentDate(data) {
-    if (data.length > 0 && data[data.length - 1].date == controller.getCurrentDate()) {
+    if (data.length > 0 && data[data.length - 1]._id == controller.getCurrentDate()) {
       controller.activities = data[data.length - 1].activities;
     }
   }

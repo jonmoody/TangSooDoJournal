@@ -17,8 +17,10 @@ module.exports = function(app) {
     MongoClient.connect('mongodb://localhost/journal', function(err, db) {
       var collection = db.collection('activities');
 
-      // collection.remove({});
-      collection.insert(req.body);
+      collection.save({
+        _id: req.body.date,
+        activities: req.body.activities
+      });
     });
     res.json(req.body);
   });
