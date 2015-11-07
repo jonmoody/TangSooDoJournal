@@ -30,16 +30,17 @@
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",
     "protractor": "protractor e2e-tests/protractor.conf.js --verbose",
-    "rest-tests": "jasmine-node ./rest-tests/ --verbose",
+    "rest-tests": "mocha ./rest-tests/",
     "all-tests": "npm start; npm run test-single-run; npm run rest-tests; webdriver-manager update; protractor e2e-tests/protractor.conf.js --verbose; npm stop"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
+    "expect.js": "^0.3.1",
     "express": "^4.13.3",
     "forever": "^0.15.1",
-    "frisby": "^0.8.5",
-    "jasmine-node": "^1.14.5",
     "method-override": "^2.3.5",
-    "mongodb": "^2.0.47"
+    "mocha": "^2.3.3",
+    "mongodb": "^2.0.47",
+    "superagent": "^1.4.0"
   }
 }
