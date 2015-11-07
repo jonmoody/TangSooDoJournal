@@ -83,7 +83,7 @@ describe('tangSooDoJournal.journal module', function() {
       var expectedData = {
         date: expectedDateString,
         activities: journalController.activities
-      }
+      };
 
       $httpBackend.expectPOST('/api/save', expectedData).respond(200, '');
       journalController.saveActivities();
@@ -97,11 +97,29 @@ describe('tangSooDoJournal.journal module', function() {
       var expectedData = {
         date: expectedDateString,
         activities: journalController.activities
-      }
+      };
 
       $httpBackend.when('GET', '/api/load').respond(expectedData, '');
       journalController.getActivities();
       $httpBackend.flush();
+    });
+
+    it('should keep the default time values if there is no saved data for the current date', function() {
+      jasmine.clock().mockDate(new Date('February 15, 2015'));
+
+      var expectedData = {
+        date: 'December 15, 2015',
+        activities: [{
+          name: 'Hyung',
+          time: 60
+        }]
+      };
+
+      $httpBackend.when('GET', '/api/load').respond(expectedData, '');
+      journalController.getActivities();
+      $httpBackend.flush();
+
+      expect(journalController.activities[0].time).toEqual(0);
     });
 
     describe('class activities', function() {

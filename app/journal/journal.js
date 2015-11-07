@@ -21,6 +21,12 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
   var controller = this;
   this.activities = [];
 
+  function setActivitiesForCurrentDate(data) {
+    if (data.length > 0 && data[data.length - 1].date == controller.getCurrentDate()) {
+      controller.activities = data[data.length - 1].activities;
+    }
+  }
+
   this.getCurrentDate = function() {
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date().toLocaleDateString('en-US', options);
@@ -73,9 +79,7 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
         date: controller.getCurrentDate()
       }
     }).then(function successCallback(response) {
-      if (response.data.length > 0) {
-        controller.activities = response.data[response.data.length - 1].activities;
-      }
+      setActivitiesForCurrentDate(response.data);
     }, undefined);
   }
 
