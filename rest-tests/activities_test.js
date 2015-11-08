@@ -2,6 +2,10 @@ var superagent = require('superagent');
 var expect = require('expect.js');
 var mongodb = require('mongodb').MongoClient;
 
+var BASE_URL = 'http://localhost:8000/';
+var LOAD_URL = BASE_URL + 'api/load';
+var SAVE_URL = BASE_URL + 'api/save';
+
 describe('activities rest api', function() {
 
   function cleanDatabase() {
@@ -20,7 +24,7 @@ describe('activities rest api', function() {
   })
 
   it('can access the endpoint for loading activities', function(done) {
-    superagent.get('http://localhost:8000/api/load')
+    superagent.get(LOAD_URL)
       .end(function(error, response) {
         expect(error).to.equal(null);
         expect(response.status).to.equal(200);
@@ -35,7 +39,7 @@ describe('activities rest api', function() {
       time: 15
     }];
 
-    superagent.post('http://localhost:8000/api/save')
+    superagent.post(SAVE_URL)
       .send({
         _id: expectedDate,
         activities: expectedActivities
@@ -55,7 +59,7 @@ describe('activities rest api', function() {
       time: 15
     }];
 
-    superagent.post('http://localhost:8000/api/save')
+    superagent.post(SAVE_URL)
       .send({
         _id: expectedDate,
         activities: expectedActivities
@@ -66,7 +70,7 @@ describe('activities rest api', function() {
         done();
       });
 
-    superagent.get('http://localhost:8000/api/load')
+    superagent.get(LOAD_URL)
       .end(function(error, response) {
         expect(response.body.length).to.equal(1);
         expect(response.body[0]._id).to.equal(expectedDate);
@@ -86,13 +90,13 @@ describe('activities rest api', function() {
       time: 60
     }];
 
-    superagent.post('http://localhost:8000/api/save')
+    superagent.post(SAVE_URL)
       .send({
         _id: expectedDate,
         activities: originalActivities
       });
 
-    superagent.post('http://localhost:8000/api/save')
+    superagent.post(SAVE_URL)
       .send({
         _id: expectedDate,
         activities: updatedActivities
@@ -101,7 +105,7 @@ describe('activities rest api', function() {
         done();
       });
 
-    superagent.get('http://localhost:8000/api/load')
+    superagent.get(LOAD_URL)
       .end(function(error, response) {
         expect(response.body.length).to.equal(1);
         expect(response.body[0]._id).to.equal(expectedDate);
