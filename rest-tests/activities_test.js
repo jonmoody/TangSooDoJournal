@@ -48,4 +48,34 @@ describe('activities rest api', function() {
       });
   });
 
+  it('can retrieve data from the database', function(done) {
+    var expectedDate = 'January 15, 2015';
+    var expectedActivities = [{
+      name: 'Hyung',
+      time: 15
+    }];
+
+    superagent.post('http://localhost:8000/api/save')
+      .send({
+        _id: expectedDate,
+        activities: expectedActivities
+      })
+      .end(function(error, response) {
+        expect(error).to.equal(null);
+        expect(response.body._id).to.equal(expectedDate);
+        expect(response.body.activities).to.eql(expectedActivities);
+        done();
+      });
+
+    superagent.get('http://localhost:8000/api/load')
+      .end(function(error, response) {
+        expect(error).to.equal(null);
+        expect(response.status).to.equal(200);
+        expect(response.body.length).to.equal(1);
+        expect(response.body[0]._id).to.equal(expectedDate);
+        expect(response.body[0].activities).to.equal(expectedActivities);
+        done();
+      });
+  });
+
 });
