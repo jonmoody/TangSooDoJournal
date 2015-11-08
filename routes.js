@@ -21,7 +21,9 @@ module.exports = function(app) {
         activities: req.body.activities
       });
     });
-    res.json(req.body);
+    res.json({
+      message: 'Saved successfully.'
+    });
   });
 
 };

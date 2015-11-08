@@ -48,8 +48,7 @@ describe('activities rest api', function() {
       })
       .end(function(error, response) {
         expect(error).to.equal(null);
-        expect(response.body.date).to.equal(expectedDate);
-        expect(response.body.activities).to.eql(expectedActivities);
+        expect(response.body.message).to.equal('Saved successfully.');
         done();
       });
   });
