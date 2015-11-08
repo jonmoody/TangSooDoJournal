@@ -8,20 +8,22 @@ var SAVE_URL = BASE_URL + 'api/save';
 
 describe('activities rest api', function() {
 
-  function cleanDatabase() {
+  function cleanDatabase(done) {
     mongodb.connect('mongodb://localhost/journal', function(err, db) {
       var collection = db.collection('activities');
-      collection.remove({});
+      collection.remove({}, function() {
+        done();
+      });
     });
   }
 
-  before(function() {
-    cleanDatabase();
+  beforeEach(function(done) {
+    cleanDatabase(done);
   });
 
-  afterEach(function() {
-    cleanDatabase();
-  })
+  after(function(done) {
+    cleanDatabase(done);
+  });
 
   it('can access the endpoint for loading activities', function(done) {
     superagent.get(LOAD_URL)
@@ -33,7 +35,7 @@ describe('activities rest api', function() {
   });
 
   it('can access the endpoint for saving activities', function(done) {
-    var expectedDate = 'January 15, 2015';
+    var expectedDate = 'January 1, 2015';
     var expectedActivities = [{
       name: 'Hyung',
       time: 15
@@ -41,19 +43,19 @@ describe('activities rest api', function() {
 
     superagent.post(SAVE_URL)
       .send({
-        _id: expectedDate,
+        date: expectedDate,
         activities: expectedActivities
       })
       .end(function(error, response) {
         expect(error).to.equal(null);
-        expect(response.body._id).to.equal(expectedDate);
+        expect(response.body.date).to.equal(expectedDate);
         expect(response.body.activities).to.eql(expectedActivities);
         done();
       });
   });
 
   it('can retrieve data from the database', function(done) {
-    var expectedDate = 'January 15, 2015';
+    var expectedDate = 'January 1, 2015';
     var expectedActivities = [{
       name: 'Hyung',
       time: 15
@@ -61,26 +63,22 @@ describe('activities rest api', function() {
 
     superagent.post(SAVE_URL)
       .send({
-        _id: expectedDate,
+        date: expectedDate,
         activities: expectedActivities
       })
-      .end(function(error, response) {
-        expect(response.body._id).to.equal(expectedDate);
-        expect(response.body.activities).to.eql(expectedActivities);
-        done();
-      });
-
-    superagent.get(LOAD_URL)
-      .end(function(error, response) {
-        expect(response.body.length).to.equal(1);
-        expect(response.body[0]._id).to.equal(expectedDate);
-        expect(response.body[0].activities).to.equal(expectedActivities);
-        done();
+      .end(function() {
+        superagent.get(LOAD_URL)
+          .end(function(error, response) {
+            expect(response.body.length).to.equal(1);
+            expect(response.body[0]._id).to.equal(expectedDate);
+            expect(response.body[0].activities).to.eql(expectedActivities);
+            done();
+          });
       });
   });
 
   it('will update an existing record if the data was already posted on the same day', function(done) {
-    var expectedDate = 'January 15, 2015';
+    var expectedDate = 'January 1, 2015';
     var originalActivities = [{
       name: 'Hyung',
       time: 15
@@ -92,25 +90,53 @@ describe('activities rest api', function() {
 
     superagent.post(SAVE_URL)
       .send({
-        _id: expectedDate,
+        date: expectedDate,
         activities: originalActivities
+      })
+      .end(function() {
+        superagent.post(SAVE_URL)
+          .send({
+            date: expectedDate,
+            activities: updatedActivities
+          })
+          .end(function() {
+            superagent.get(LOAD_URL)
+              .end(function(error, response) {
+                expect(response.body.length).to.equal(1);
+                expect(response.body[0]._id).to.equal(expectedDate);
+                expect(response.body[0].activities).to.eql(updatedActivities);
+                done();
+              });
+          });
       });
+  });
+
+  it('will store a separate record for each day in the database', function(done) {
+    var firstDate = 'January 1, 2015';
+    var secondDate = 'January 2, 2015';
+    var activities = [{
+      name: 'Hyung',
+      time: 15
+    }];
 
     superagent.post(SAVE_URL)
       .send({
-        _id: expectedDate,
-        activities: updatedActivities
+        date: firstDate,
+        activities: activities
       })
-      .end(function(error, response) {
-        done();
-      });
-
-    superagent.get(LOAD_URL)
-      .end(function(error, response) {
-        expect(response.body.length).to.equal(1);
-        expect(response.body[0]._id).to.equal(expectedDate);
-        expect(response.body[0].activities).to.equal(updatedActivities);
-        done();
+      .end(function() {
+        superagent.post(SAVE_URL)
+          .send({
+            date: secondDate,
+            activities: activities
+          })
+          .end(function(error, response) {
+            superagent.get(LOAD_URL)
+              .end(function(error, response) {
+                expect(response.body.length).to.equal(2);
+                done();
+              });
+          });
       });
   });
 
