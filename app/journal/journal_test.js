@@ -99,7 +99,7 @@ describe('tangSooDoJournal.journal module', function() {
         activities: journalController.activities
       };
 
-      $httpBackend.when('GET', '/api/load').respond(expectedData, '');
+      $httpBackend.whenGET('/api/load').respond(expectedData, '');
       journalController.getActivities();
       $httpBackend.flush();
     });
@@ -115,7 +115,7 @@ describe('tangSooDoJournal.journal module', function() {
         }]
       };
 
-      $httpBackend.when('GET', '/api/load').respond(expectedData, '');
+      $httpBackend.whenGET('/api/load').respond(expectedData, '');
       journalController.getActivities();
       $httpBackend.flush();
 
