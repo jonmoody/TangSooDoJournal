@@ -4,3 +4,8 @@
   width: 40px;
   text-align: center;
 }
+
+#success-message {
+  color: #00FF00;
+  font-weight: bold;
+}
