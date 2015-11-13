@@ -122,6 +122,18 @@ describe('tangSooDoJournal.journal module', function() {
       expect(journalController.activities[0].time).toEqual(0);
     });
 
+    it('should set the success message when the data is saved', function() {
+      var expectedResponse = {
+        message: 'Some sort of message'
+      };
+
+      $httpBackend.whenPOST('/api/save').respond(200, expectedResponse);
+      journalController.saveActivities();
+      $httpBackend.flush();
+
+      expect(journalController.successMessage).toEqual(expectedResponse.message);
+    });
+
     describe('class activities', function() {
 
       it('should contain hyung', function() {

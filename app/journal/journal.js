@@ -20,6 +20,7 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
 
   var controller = this;
   this.activities = [];
+  this.successMessage = '';
 
   function setActivitiesForCurrentDate(data) {
     if (data.length > 0 && data[data.length - 1]._id == controller.getCurrentDate()) {
@@ -53,7 +54,7 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
   }
 
   this.saveActivities = function() {
-    var request = {
+    $http({
       method: 'POST',
       url: '/api/save',
       headers: {
@@ -63,9 +64,9 @@ angular.module('tangSooDoJournal.journal', ['ngRoute'])
         date: controller.getCurrentDate(),
         activities: controller.activities
       }
-    }
-
-    $http(request);
+    }).then(function successCallback(response) {
+      controller.successMessage = response.data.message;
+    }, undefined);
   }
 
   this.getActivities = function() {

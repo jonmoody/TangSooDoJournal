@@ -88,6 +88,15 @@ describe('Tang Soo Do Journal', function() {
       expect(timeText.getText()).toEqual('15');
     });
 
+    it('should display saved successfully message when the submit button is clicked', function() {
+      var messageText = element(by.id('success-message'));
+      var submitButton = element(by.css('.submit-button'));
+
+      submitButton.click();
+
+      expect(messageText.getText()).toEqual('Saved successfully.');
+    });
+
   });
 
 });
