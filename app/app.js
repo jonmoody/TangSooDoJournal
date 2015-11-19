@@ -10,6 +10,10 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: 'journal/journal.html',
       controller: 'JournalController'
     })
+    .when('/report', {
+      templateUrl: 'report/report.html',
+      controller: 'ReportController'
+    })
     .otherwise({
       redirectTo: '/journal'
     });
