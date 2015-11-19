@@ -12,6 +12,7 @@ angular.module('tangSooDoJournal.report', ['ngRoute'])
 .controller('ReportController', function($http) {
 
   var controller = this;
+  this.activities = [];
 
   this.getActivities = function() {
     $http({
@@ -21,7 +22,7 @@ angular.module('tangSooDoJournal.report', ['ngRoute'])
         'Content-Type': 'application/json'
       }
     }).then(function successCallback(response) {
-
+      controller.activities = response.data;
     }, undefined);
   }
 

@@ -41,6 +41,8 @@ describe('tangSooDoJournal.report module', function() {
       $httpBackend.whenGET('/api/load').respond(expectedData, '');
       reportController.getActivities();
       $httpBackend.flush();
+
+      expect(reportController.activities.data).toEqual(expectedData.data);
     });
 
   });
